@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="de">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0"> 
+        <meta charset="utf-8">                      
+        <meta name="description" content="Tascheenrechner">
+        <script src="bignumber.js" charset="UTF-8" defer></script>                              
+        <script src="var.js" charset="UTF-8" defer></script>    
+        <script src="ts.js" charset="UTF-8" defer></script>    
+
+        <style type="text/css" title="text/css">
+            :root {
+                background: linear-gradient(to right, #eee, #5a5aca);
+                font-family: Arial;
+            }            
+            body {
+                display: flex; justify-content: center
+            }
+            .window {
+                margin: 0;
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+            }
+            .calculator-window {
+                border: solid 0.1em black;
+                border-radius: 2.5em;
+                padding: 1.5em;
+                margin-left: 17em;
+            }
+            .work-board {
+                width: 16em;
+                height: 100%;
+                position: absolute;
+                border: solid 0.1em black;
+                border-radius: 2.5em;
+            }
+            .button {
+                width: 4em;
+                height: 3em;
+                background-color: #a9a9dd;
+                color: #000;
+                margin: 0.1rem;
+                border: 0.1rem solid black;
+                border-radius: 15%;
+            }
+            .border_bt {
+                width: 4em;
+                height: 3em;
+                background-color: #a9a9dd;
+                color: #000;
+                margin: 0.1rem;
+                border: 0.1rem solid black;
+                border-radius: 15%;
+            }
+            .calc-display {
+                padding-top: 0.5rem;
+                padding-bottom: 0.5rem;
+                vertical-align: middle;
+                border: 0.1rem solid #1e181a;
+                border-radius: 2.5rem;
+                padding-right: 0.5em;
+                font-size: 1.5em;
+                width: 9em;
+            }
+            .backspace_button {
+                width: 8.2em;
+                border-radius: 5%;
+            }
+            .extended.button {
+                background-color: #a4a4dc;
+            }
+            .text-area {
+                position: absolute;
+                top: 10%;
+                left: 3%;
+                right: 3%;
+                font-size: 1em;
+            }
+            .green_sum {
+                color: rgb(0, 0, 0);
+                font-weight: bold;
+                text-decoration: underilne;
+            }
+
+        </style>
+    </head>
+    <body>
+        <div class="window">
+            
+            <div class="work-board">
+                <div class="text-area">
+                    <text></text>  
+                </div>
+            </div>
+            <div class="calculator-window">
+                <div class="calc-display" align="right">
+                    0
+                </div>
+                <br>
+                <div class="buttons">
+                    <button class="extended button">👾</button><button class="del_button button operator">DEL</button><button class="backspace_button button operator">←</button><br>
+                    <button accesskey="1" class="one button numbers">1</button><button class="two button numbers">2</button><button class="three button numbers">3</button><button class="divide border_bt button operator">÷</button><br>
+                    <button class="four button numbers">4</button><button class="five button numbers">5</button><button class="six button numbers">6</button><button class="multiple border_bt button operator">x</button><br>
+                    <button class="seven button numbers">7</button><button class="eight button numbers">8</button><button class="nine button numbers">9</button><button class="minus border_bt button operator">-</button><br>
+                    <button class="zero button numbers">0</button><button class="point button">.</button><button class="equals button operator">=</button><button class="plus border_bt button operator">+</button><br>
+                </div>
+            </div>
+            
+        </div>
+    </body>
