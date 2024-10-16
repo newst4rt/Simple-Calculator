@@ -79,7 +79,6 @@ function operator(a) {
         calculator_history(_a, _b, a);
         past_op = "+";
         _a = "";
-        
         display_content(_b);
     }
 
@@ -94,19 +93,22 @@ function operator(a) {
     if (a == "x") {
         if ((enable_pemdas == 1 && past_op != "x") || (enable_pemdas == 1 && eq_active == 1 && bak_past_op != "x")) {
             if (eq_active == 1) {
-                pemdas_value = bak_past_op
-                pemdas_memory = new BigNumber(past__b);
-                pemdas_bi = new BigNumber(past__a);
+                if(past_op == "+" || past_op == "-") {
+                    pemdas_value = bak_past_op
+                    pemdas_memory = new BigNumber(past__b);
+                    pemdas_bi = new BigNumber(past__a);
+                }
             } else {
-                pemdas_value = past_op; 
-                pemdas_memory = new BigNumber(_b); 
-                pemdas_bi = new BigNumber(_a); 
+                if(past_op == "+" || past_op == "-") {
+                    pemdas_value = past_op; 
+                    pemdas_memory = new BigNumber(_b); 
+                    pemdas_bi = new BigNumber(_a); 
+                }
             }
             
         }
         _b = calc_add(_a, _b, past_op, a);
         calculator_history(_a, _b, a);
-
         _a = "";
         display_content(_b);
         past_op = "x";
@@ -116,13 +118,17 @@ function operator(a) {
         
         if ((enable_pemdas == 1 && past_op != "÷") || (enable_pemdas == 1 && eq_active == 1 && bak_past_op != "÷")) {
             if (eq_active == 1) {
-                pemdas_value = bak_past_op
-                pemdas_memory = new BigNumber(past__b);
-                pemdas_bi = new BigNumber(past__a);
+                if(past_op == "+" || past_op == "-") {
+                    pemdas_value = bak_past_op
+                    pemdas_memory = new BigNumber(past__b);
+                    pemdas_bi = new BigNumber(past__a);
+                }
             } else {
-                pemdas_value = past_op; 
-                pemdas_memory = new BigNumber(_b); 
-                pemdas_bi = new BigNumber(_a); 
+                if(past_op == "+" || past_op == "-") {
+                    pemdas_value = past_op; 
+                    pemdas_memory = new BigNumber(_b); 
+                    pemdas_bi = new BigNumber(_a); 
+                }
             }
             
         }
@@ -219,7 +225,6 @@ function calculator_history(_a, _b, a) {
 
 function print_history(history) {
     document.getElementsByClassName("text-area")[0].innerHTML = history;
-
 }
 
 function calc_add(_a, _b, value, pemdas) {
@@ -251,15 +256,11 @@ function calc_add(_a, _b, value, pemdas) {
         bi = new BigNumber(_a);
     }
 
-    past_bi = bi;
-
     if (value == "x") {
         if (enable_pemdas == 1) {
-            
             pemdas_bi = pemdas_bi.multipliedBy(bi);
             bi = pemdas_bi;
             ai = pemdas_memory;
-            
             value = pemdas_value;
         } else {
             return ai.multipliedBy(bi)
@@ -268,11 +269,9 @@ function calc_add(_a, _b, value, pemdas) {
 
     if (value == "÷") {
         if (enable_pemdas == 1) {
-            
             pemdas_bi = pemdas_bi.dividedBy(bi);
             bi = pemdas_bi;
             ai = pemdas_memory;
-            
             value = pemdas_value;
         } else {
             return ai.dividedBy(bi)
@@ -290,15 +289,11 @@ function calc_add(_a, _b, value, pemdas) {
 
 function calc_history(rslt, para, sum) {
     let pcalc_history = history.replace(/<[^>]*>?/gm, '').replace(/\s/g, '');
-    
-    
     if(isNaN(pcalc_history.slice(-1)) && history.length != 0) {
         if (para == "=") { 
             if (rslt == 0 ) {
-                
                 history = history.slice(0, -2) + " " + para + " ";
             } else {
-                
                 history = history.slice(0, -2) + " " + past_op + " " + rslt + " " + para + " ";
             }
         } else {
@@ -310,11 +305,7 @@ function calc_history(rslt, para, sum) {
         }
     } else {
         if (para == "=") {
-            if (past_op == "=") {
-                if (!isNaN(rslt)) {
-                    
-                }
-            } else {
+            if (past_op != "=") {
                 if (rslt == 0) {
                     history = history + " " + para + " ";  
                 } else {
@@ -349,4 +340,3 @@ buttons.forEach(button => {
     });
 });
 
-function add(value) { return memory + value; }
