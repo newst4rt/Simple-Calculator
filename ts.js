@@ -53,7 +53,6 @@ function operator(a) {
         if (pemdas_trigger == 0 && past_op == "x") {
             pemdas_bi = bi;
             pemdas_ai = ai;
-            pemdas_value = op_check;
             pemdas_trigger = 1;
         } else {
             pemdas_trigger = 0;
