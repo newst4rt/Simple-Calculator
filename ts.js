@@ -93,7 +93,7 @@ function operator(a) {
     if (a == "x") {
         if ((enable_pemdas == 1 && past_op != "x") || (enable_pemdas == 1 && eq_active == 1 && bak_past_op != "x")) {
             if (eq_active == 1) {
-                if(past_op == "+" || past_op == "-") {
+                if(bak_past_op == "+" || bak_past_op == "-") {
                     pemdas_value = bak_past_op
                     pemdas_memory = new BigNumber(past__b);
                     pemdas_bi = new BigNumber(past__a);
@@ -118,7 +118,7 @@ function operator(a) {
         
         if ((enable_pemdas == 1 && past_op != "÷") || (enable_pemdas == 1 && eq_active == 1 && bak_past_op != "÷")) {
             if (eq_active == 1) {
-                if(past_op == "+" || past_op == "-") {
+                if(bak_past_op == "+" || bak_past_op == "-") {
                     pemdas_value = bak_past_op
                     pemdas_memory = new BigNumber(past__b);
                     pemdas_bi = new BigNumber(past__a);
