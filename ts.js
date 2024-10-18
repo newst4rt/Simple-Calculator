@@ -146,7 +146,9 @@ function operator(a) {
     }
 
     if (a == "=") {
-        _b = calc_add(_a, _b, past_op);
+        if (eq_active == 0) {
+            _b = calc_add(_a, _b, past_op);
+        }
         calculator_history(_a, _b, a);
         display_content(_b);
         past_op = "=";
